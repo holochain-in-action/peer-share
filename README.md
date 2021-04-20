@@ -7,7 +7,7 @@
 4. In the tests folder run `npm test`
 ___________
 ### Watch Youtube Channel:
-https://www.youtube.com/watch?v=V077MZp7BHw&list=PL2hOZGg8QnUDiTkJF2CD2Fu1D9F6KbsmB
+https://www.youtube.com/playlist?list=PL2hOZGg8QnUDiTkJF2CD2Fu1D9F6KbsmB
 ___________
 # Peer-Share-1.0.0
 
