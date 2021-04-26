@@ -3,7 +3,7 @@
 
 ## What is it?
 
-Peer-Share is a peer to peer [**holochain application**](https://holochain.org/) *(**hApp**)* that enables peers to shared their contents with others. This content can be shared either completely free of charge or with a paid subscription by using some centralized or distributed payment methods.
+Peer-Share is a distributed peer to peer [**holochain application**](https://holochain.org/) *(**hApp**)* that enables peers to shared their contents with others. This content can be shared either completely free of charge or with a paid subscription by using some centralized or distributed payment methods.
 
 
 Basically this project is an experimental hApp to learn and challenge holochain technology and then design and test some practices and architectures during the Holochain-in-Action meetings.
