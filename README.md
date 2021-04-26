@@ -1,3 +1,26 @@
+
+# Peer-Share
+
+## What is it?
+
+Peer-Share is a peer to peer [**holochain application**](https://holochain.org/) *(**hApp**)* that enables peers to shared their contents with others. This content can be shared either completely free of charge or with a paid subscription by using some centralized or distributed payment methods.
+
+
+Basically this project is an experimental hApp to learn and challenge holochain technology and then design and test some practices and architectures during the Holochain-in-Action meetings.
+
+
+[Holochain-in-Action](https://forum.holochain.org/t/about-the-holochain-in-action-category/5448) is a weekly virtual meetings for:
+  
+* Knowledge Sharing
+* Patterns and best practices discussion
+* Pair Programming
+* Analyzing and Designing hApps
+
+on Holochain technology and also [Holoport](https://holo.host/) echosystem.
+
+If you would like to participate in the Holochain-in-Action meetings please fill out this application form. [here](https://dawumck27xt.typeform.com/to/uZTCoYs1)
+____
+
 ### Run hApp
 
 0. Install nix-shell
@@ -8,11 +31,8 @@
 ___________
 ### Watch Youtube Channel:
 https://www.youtube.com/playlist?list=PL2hOZGg8QnUDiTkJF2CD2Fu1D9F6KbsmB
-___________
-# Peer-Share-1.0.0
-
-
-## Purposes
+___
+## General Purposes
 1. Implementing **Dev-ops** in Holochain with minimum DNA changes.
 2. Implementing **hybrid solution** with holocahin (**oracle** topic).
 3. Implementing **modularity** by using some ready modules like File_Storage into the solution.

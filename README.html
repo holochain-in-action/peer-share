@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Peer-Share</title>
+        <style>
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="peer-share">Peer-Share</h1>
+<h2 id="what-is-it">What is it?</h2>
+<p>Peer-Share is a peer to peer <a href="https://holochain.org/"><strong>holochain application</strong></a> <em>(<strong>hApp</strong>)</em> that enables peers to shared their contents with others. This content can be shared either completely free of charge or with a paid subscription by using some centralized or distributed payment methods.</p>
+<p>Basically this project is an experimental hApp to learn and challenge holochain technology and then design and test some practices and architectures during the Holochain-in-Action meetings.</p>
+<p><a href="https://forum.holochain.org/t/about-the-holochain-in-action-category/5448">Holochain-in-Action</a> is a weekly virtual meetings for:</p>
+<ul>
+<li>Knowledge Sharing</li>
+<li>Patterns and best practices discussion</li>
+<li>Pair Programming</li>
+<li>Analyzing and Designing hApps</li>
+</ul>
+<p>on Holochain technology and also <a href="https://holo.host/">Holoport</a> echosystem.</p>
+<p>If you would like to participate in the Holochain-in-Action meetings please fill out this application form. <a href="https://dawumck27xt.typeform.com/to/uZTCoYs1">here</a></p>
+<hr>
+<h3 id="run-happ">Run hApp</h3>
+<ol start="0">
+<li>Install nix-shell</li>
+<li>Clone this repository</li>
+<li>Go to holo-layer folder and run <code>nix-shell</code> (It takes a lot of time for the first time.)</li>
+<li>Go to tests folder and run <code>npm i</code></li>
+<li>In the tests folder run <code>npm test</code></li>
+</ol>
+<hr>
+<h3 id="watch-youtube-channel">Watch Youtube Channel:</h3>
+<p><a href="https://www.youtube.com/playlist?list=PL2hOZGg8QnUDiTkJF2CD2Fu1D9F6KbsmB">https://www.youtube.com/playlist?list=PL2hOZGg8QnUDiTkJF2CD2Fu1D9F6KbsmB</a></p>
+<hr>
+<h2 id="general-purposes">General Purposes</h2>
+<ol>
+<li>Implementing <strong>Dev-ops</strong> in Holochain with minimum DNA changes.</li>
+<li>Implementing <strong>hybrid solution</strong> with holocahin (<strong>oracle</strong> topic).</li>
+<li>Implementing <strong>modularity</strong> by using some ready modules like File_Storage into the solution.</li>
+<li>Designing holochain app with <strong>Holoport</strong></li>
+<li>Introducing some patterns and desings for implementing hApps.</li>
+</ol>
+<h1 id="architect-schema">Architect Schema</h1>
+<p><img src="https://i.imgur.com/51Wq6oC.png" alt=""></p>
+<h1 id="layers">Layers:</h1>
+<ul>
+<li>
+<p><strong>Holo layer</strong>:</p>
+<ul>
+<li>Schema abstraction.(Json Schema)</li>
+<li>Content abstraction.(Json Content)</li>
+<li>Application settings.</li>
+<li>Subscription(Capability-token).</li>
+<li>Smart Contact:Uploading web-assembly to have customized business rules()(next version)</li>
+</ul>
+</li>
+<li>
+<p><strong>Outlet layer</strong>: (MVC pattern)</p>
+<ul>
+<li><strong>Model</strong>: hApp concrete modeling</li>
+<li><strong>View</strong>: UI, view models,</li>
+<li><strong>Controller</strong>:
+<ul>
+<li>DNA Adapter: outlet to DNA</li>
+<li>DNA Signaling: DNA to Outlet</li>
+<li>Oracle Adapter: connection to hybrid</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>External Layer</strong></p>
+<ul>
+<li>Centralized:
+<ul>
+<li>Indexing: Elastic Search</li>
+<li>Payment methods: Paypal, MasterCard</li>
+</ul>
+</li>
+<li>Cryptocurrency layer
+<ul>
+<li>Metamask connection</li>
+<li>Wallet connection</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="user-stories">User Stories</h1>
+<h2 id="guest-user-without-identity">Guest (user without identity):</h2>
+<ul>
+<li>As a Guest I want to be able to open hApp via browser.</li>
+<li>As a Guest I want to search channel and visit the contents.</li>
+<li>As a Guest I want to be able to register an account.</li>
+</ul>
+<h2 id="useruser-with-identity">User:(user with identity)</h2>
+<ul>
+<li>As a User I want to be able to create a Channel.</li>
+<li>As a user I want to see the list of my Channels.</li>
+<li>As a User I want to add multiple contents to a Channel.</li>
+<li>As a User I want to edit/delete a Channel info.</li>
+<li>As a User I want to delete a content of channel.</li>
+</ul>
+<h2 id="developeruser-with-super-power">Developer:(user with super-power)</h2>
+<ul>
+<li>As a developer I want to have Dev-ops facility on Outlet layer.</li>
+<li>As a developer I want to be able to update app without versioning the DNA.</li>
+<li>As a developer I want to be able to create new schema.</li>
+</ul>
+<hr>
+<h1 id="dna-design">DNA design</h1>
+<h2 id="schema-definition-in-zome">Schema Definition in Zome</h2>
+<ul>
+<li>schema definition is created only by developer using progenitor pattern.</li>
+</ul>
+<pre><code class="language-rust"><div>[Public Entry][Edit(N),Delete(N)]
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Schema</span></span> {  
+  definition:JSON, <span class="hljs-comment">// JSON Schema: https://json-schema.org/</span>
+  version:<span class="hljs-built_in">String</span>
+  owner_address:AgentPubKey, <span class="hljs-comment">// progenitor pattern, this is developer agent address</span>
+}
+
+Validation Rules:
+<span class="hljs-number">1</span>- definition, version, owner_address are required.
+<span class="hljs-number">2</span>- owner_address should be progenitor pattern
+<span class="hljs-number">3</span>- json schema should be valid.
+
+</div></code></pre>
+<p>Peer-Share Example:
+Schema will be created by Admin User.</p>
+<pre><code class="language-json="><code><div>Schema {
+ name: &quot;Channel&quot;,
+  definition:{
+     [field:title, type:string,lenght:50, required:yes],
+     [field:category, type:int, required:yes],
+     [field:createdat, type:datetime, required:yes],
+     [field:description, type:string, lenght:4000, required:no],     
+ },
+ version:&quot;v1&quot;,
+ owner_address:&quot;asdf234sfsewr#$2&quot;
+}
+
+
+Schema {
+ name: &quot;Tag&quot;,
+  definition:{
+     [field:name, type:string(25), required:yes]    
+ },
+ version:&quot;v1&quot;,
+ owner_address:&quot;asdf234sfsewr#$2&quot;
+}
+</div></code></code></pre>
+<h2 id="content-definition-in-zome">Content Definition in Zome</h2>
+<h3 id="public-data-definition">Public Data Definition</h3>
+<ul>
+<li>End-user public data which goes to DHT would be using this entry.</li>
+</ul>
+<pre><code class="language-rust"><div>[Public Entry][Edit(N),Delete(Y)]
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Public_Content</span></span> { 
+   content:<span class="hljs-built_in">String</span>, <span class="hljs-comment">// JSON data in JsonSchema standard format</span>
+   schema:Address, <span class="hljs-comment">// Hash address of JsonSchema</span>
+   owner: AgentPubKey,   <span class="hljs-comment">// user address</span>
+}
+
+Validation Rules:
+<span class="hljs-number">1</span>- ower address is valid
+<span class="hljs-number">2</span>- validate content based on the referenced schema using schema format.
+</div></code></pre>
+<p>Example:</p>
+<pre><code class="language-json="><code><div>Public_Content { // Channel is public entry in DHT
+ content:{
+     title:&quot;Holochain in Action&quot;,
+     category:1
+     createdat:&quot;01-01-2021 12:30&quot;,
+     description:&quot;empty&quot;
+ },
+ schema:&quot;HNsj6tQ51s1SPrCBkedbNf0Tp0GbM&quot;,
+ owner:&quot;o23KMBAuJGSYnRmoBZM3lMfTKevIkA&quot;
+}
+
+</div></code></code></pre>
+<h3 id="private-data-definition">Private Data Definition</h3>
+<ul>
+<li>End-user private data would be using this entry.</li>
+</ul>
+<pre><code class="language-rust"><div>[Private Entry][Edit(Y),Delete(Y)]
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Private_Content</span></span>{
+  content:<span class="hljs-built_in">String</span>, <span class="hljs-comment">// JSON data in JsonSchema standard format</span>
+  schema:Address, <span class="hljs-comment">// Hash address of JsonSchema</span>
+  owner: AgentPubKey,   <span class="hljs-comment">// user address</span>
+}
+
+Validation Rules:
+<span class="hljs-number">1</span>- ower address is valid
+<span class="hljs-number">2</span>- validate content based on the referenced schema using schema format.
+
+</div></code></pre>
+<p>Example:</p>
+<pre><code class="language-json="><code><div>Private_Content { // Draft-Channel is private entry in source-chain
+ content:{
+     title:&quot;Holochain in Action&quot;,
+     category:1
+     createdat:&quot;01-01-2021 12:30&quot;,
+     description:&quot;empty&quot;
+ },
+ schema:&quot;HNsj6tQ51s1SPrCBkedbNf0Tp0GbM&quot;,
+ owner:&quot;o23KMBAuJGSYnRmoBZM3lMfTKevIkA&quot;
+}
+</div></code></code></pre>
+<p><strong>Outlet layer(MVC Pattern)</strong></p>
+<ul>
+<li><strong>Model</strong>: concerete model of application. This model can be changed during the software life cycle. Model would be apply to DNA as an entry and recieved a Hash address. so all generated content related to each specific model should connect to this address.</li>
+<li><strong>View</strong>: all UIs and ViewModel are located here.</li>
+<li><strong>Controller</strong>: all controllers to communicate to Outside world and DNA are located here. also some basic app settings and mapping can be here. like:
+<ul>
+<li>Fetch out-side word setting from DNA and map to oracle services.</li>
+<li>Some mapping between data and basic information like Category enumeration to int.</li>
+</ul>
+</li>
+</ul>
+
+    </body>
+    </html>
