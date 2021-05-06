@@ -22,12 +22,15 @@ const installationAgents: InstallAgentsHapps = [
     ],
 ];
 
-export const InstallAgentApp = async (s, agentName: string) => {
+export const InstallAgentApp = async (s, agentName: string, agentKey: string = "") => {
     const config = Config.gen();
     const [agent] = await s.players([conductorConfig], false);
     await agent.startup();
     const adminWs = agent.adminWs();
-    const agent_key = await adminWs.generateAgentPubKey();
+    let agent_key = Buffer.from(agentKey);
+    if(agentKey == ""){
+        agent_key = await adminWs.generateAgentPubKey();
+    }
     const hash_app = await adminWs.registerDna({
         path: peerShareDNA,
     });
