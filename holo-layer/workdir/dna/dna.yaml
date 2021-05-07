@@ -2,7 +2,7 @@
 manifest_version: "1"
 name: peershare
 uuid: 00000000-0000-0000-0000-000000000000
-properties: 
+properties:
   developer_address: hCAkbs0mibHm7rB0ZPkZZzhHC55KwmDxt6uR9x2XgFQ82OYvKwR7
 zomes:
   - name: peershare

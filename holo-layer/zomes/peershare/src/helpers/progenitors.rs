@@ -12,18 +12,6 @@ impl DnaProperties {
     let prop: DnaProperties = zome_info()?.properties.try_into()?;
     Ok(prop)
   }
-
-  // pub fn get_dev_addr() -> ExternResult<AgentPubKey> {
-  //   let prop = DnaProperties::get()?.developer_address;
-  //   let prop_fixed_addr = format!("u{}", prop.trim());
-  //   let developer_addr = match AgentPubKey::try_from(prop_fixed_addr.clone()) {
-  //     Ok(address) => address,
-  //     Err(e) => {
-  //       return Err(WasmError::Guest(String::from(e.to_string())));
-  //     }
-  //   };
-  //   Ok(developer_addr)
-  // }
 }
 
 pub fn am_i_developer() -> ExternResult<bool> {

@@ -5,6 +5,7 @@ import { InstallAgentApp, _log, Peershare_Zome } from "./common";
 
 module.exports = async (orchestrator) => {
   orchestrator.registerScenario("Am I developer Tests", async (s, t) => {
+    // Bob register as the Developer of system.
     const bob_cell = await InstallAgentApp(s, "alic-cell-as-developer", true);
 
     let result_bob = await bob_cell.call(
@@ -15,6 +16,7 @@ module.exports = async (orchestrator) => {
 
     t.deepEqual(result_bob, true);
 
+    // Alice register as the Developer of system.
     const alice_cell = await InstallAgentApp(
       s,
       "alic-cell-as-developer",
