@@ -1,1 +1,1 @@
-pub mod progenitors;
+pub mod progenitor;
