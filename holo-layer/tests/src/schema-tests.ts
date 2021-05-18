@@ -2,25 +2,33 @@ const sleep = (ms) =>
     new Promise((resolve) => setTimeout(() => resolve(null), ms));
 
 import path from "path";
-import { InstallAgentApp, _log, Peershare_Zome } from "./common";
-
+import { InstallAgentsApp, _log, Peershare_Zome } from "./common";
+const enum zome_function {
+    create_schem = "create_schema",
+    get_schema_element = "get_schema_element"
+}
+import fs from "fs";
 
 module.exports = async (orchestrator) => {
     orchestrator.registerScenario("upload schema-jsaon!", async (s, t) => {
-        const alice_cell = await InstallAgentApp(
+        const [alice, bob] = await InstallAgentsApp(
             s,
-            "alice-cell-upload-schema",
-            true
+            ["alice", "bob"],
         );
+
+
+        // Read file:
+        let file_path = path.join(__dirname, "/test-data", "valid-schema.json");
+        let schema_file = fs.readFileSync(file_path, "utf-8");
 
         //*********** Test Case: create_schema, Success
         const schema = {
-            definition: "fake data",
+            definition: schema_file,
             version: "v1",
         };
-        let create_schema_result_alice = await alice_cell.call(
+        let create_schema_result_alice = await alice.call(
             Peershare_Zome,
-            "create_schema",
+            zome_function.create_schem,
             schema
         );
         _log("Create_Schema_Result", create_schema_result_alice.toString("base64"));
@@ -28,35 +36,50 @@ module.exports = async (orchestrator) => {
 
         await sleep(10);
 
-        //*********** Test Case: create_schema, Faild becuase non-developer tried to create schema
-        const bob_cell = await InstallAgentApp(s, "bob-cell-upload-schema", false);
+        //*********** Test Case: create_schema, Faild becuase non-developer tried to create schema       
         try {
-            let create_schema_result_bob = await bob_cell.call(
+            const bob_create_schema_result = await bob.call(
                 Peershare_Zome,
-                "create_schema",
-                {
-                    definition: schema,
-                    version: "v1",
-                }
+                zome_function.create_schem,
+                schema
             );
             t.fail();
         } catch (e) {
-            _log("e", e);
-            t.deepEqual(e.type, "error");
+            t.deepEqual(e.data.data, "Wasm error while working with Ribosome: Guest(\"You are not the developer, so you can\\'t create a schema\")");
         }
 
 
-        //*********** Test Case: Get Element
+        // //*********** Test Case: Get Element
 
-        let element_result = await alice_cell.call(
-            Peershare_Zome,
-            "get_schema_element",
-            schema
-        );
-        _log("Element", element_result);
-        t.ok(element_result);
+
+        let alice_read_element = await alice.call(Peershare_Zome,
+            zome_function.get_schema_element,
+            schema);
+
+        _log("alice read element", alice_read_element);
+        t.ok(alice_read_element);
 
         await sleep(10);
+
+        let bob_read_element = await bob.call(Peershare_Zome,
+            zome_function.get_schema_element,
+            schema);
+        t.ok(bob_read_element);
+
+        _log("bob read element", bob_read_element);
+        await sleep(10);
+
+
+
+        // let element_result = await alice_cell.call(
+        //     Peershare_Zome,
+        //     "get_schema_element",
+        //     schema
+        // );
+        // _log("Element", element_result);
+        // t.ok(element_result);
+
+        // await sleep(10);
 
     });
 };

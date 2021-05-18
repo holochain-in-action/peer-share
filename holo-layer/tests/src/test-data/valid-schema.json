@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "required": ["checked", "dimensions", "id", "name", "price", "tags"],
+  "properties": {
+    "checked": {
+      "$id": "#/properties/checked",
+      "type": "boolean"
+    },
+    "dimensions": {
+      "$id": "#/properties/dimensions",
+      "type": "object",
+      "required": ["width", "height"],
+      "properties": {
+        "width": {
+          "$id": "#/properties/dimensions/properties/width",
+          "type": "integer"
+        },
+        "height": {
+          "$id": "#/properties/dimensions/properties/height",
+          "type": "integer"
+        }
+      },
+      "additionalProperties": true
+    },
+    "id": {
+      "$id": "#/properties/id",
+      "type": "integer"
+    },
+    "name": {
+      "$id": "#/properties/name",
+      "type": "string"
+    },
+    "price": {
+      "$id": "#/properties/price",
+      "type": "number"
+    },
+    "tags": {
+      "$id": "#/properties/tags",
+      "type": "array",
+      "additionalItems": true,
+      "items": {
+        "$id": "#/properties/tags/items",
+        "anyOf": [
+          {
+            "$id": "#/properties/tags/items/anyOf/0",
+            "type": "string"
+          }
+        ]
+      }
+    }
+  },
+  "additionalProperties": true
+}
