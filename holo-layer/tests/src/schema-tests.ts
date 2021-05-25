@@ -5,7 +5,8 @@ import path from "path";
 import { InstallAgentsApp, _log, Peershare_Zome } from "./common";
 const enum zome_function {
     create_schem = "create_schema",
-    get_schema_element = "get_schema_element"
+    get_schema_element = "get_schema_element",
+    get_all_schemas = "get_all_schemas"
 }
 import fs from "fs";
 
@@ -33,6 +34,19 @@ module.exports = async (orchestrator) => {
         );
         _log("Create_Schema_Result", create_schema_result_alice.toString("base64"));
         t.ok(create_schema_result_alice);
+
+        await sleep(10);
+
+        const schema2 = {
+            definition: schema_file,
+            version: "v2",
+        };
+        let create_schema_result_alice_2 = await alice.call(
+            Peershare_Zome,
+            zome_function.create_schem,
+            schema2
+        );
+        t.ok(create_schema_result_alice_2);
 
         await sleep(10);
 
@@ -71,15 +85,15 @@ module.exports = async (orchestrator) => {
 
 
 
-        // let element_result = await alice_cell.call(
-        //     Peershare_Zome,
-        //     "get_schema_element",
-        //     schema
-        // );
-        // _log("Element", element_result);
-        // t.ok(element_result);
-
-        // await sleep(10);
+        let get_all_schemas_result = await bob.call(
+            Peershare_Zome,
+            zome_function.get_all_schemas,
+            null
+        );
+        _log("bob get all schemas", get_all_schemas_result);
+        t.ok(get_all_schemas_result);
+        t.equal(get_all_schemas_result.length, 2);
+        await sleep(10);
 
     });
 };
