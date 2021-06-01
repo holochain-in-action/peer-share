@@ -1,0 +1,22 @@
+{
+  "name": "client-basic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently --kill-others \"npm run build\" \"npm run serve\" ",
+    "build": "webpack --watch",
+    "serve": "webpack serve"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@holochain/conductor-api": "0.0.4",
+    "buffer": "^6.0.3",
+    "concurrently": "^6.2.0",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.0",
+    "webpack-dev-server": "^3.11.2"
+  }
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="module" src="./index.js"></script>
+    <style>
+        section {
+            padding-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <label for="port">Port</label>
+        <input type="text" id="txt_port" value="8888" />
+    </section>
+    <section>
+        <label for="appid">ApplicationId</label>
+        <input type="text" id="txt_appid" value="psh1" />
+    </section>
+    <section>
+        <label for="fn">Function Name</label>
+        <input type="text" id="txt_fn" value="who_am_i" />
+    </section>
+    <section>
+        <label for="fn">Payload</label>
+        <textarea id="txt_payload"> </textarea>
+    </section>
+    <section>
+        <input id="btnCallZomeFn" type="button" value="Call Zome Function" />
+    </section>
+</body>
+
+</html>
