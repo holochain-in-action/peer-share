@@ -3,7 +3,7 @@ manifest_version: "1"
 name: peershare
 uuid: 00000000-0000-0000-0000-000000000000
 properties:
-  developer_address: hCAkbs0mibHm7rB0ZPkZZzhHC55KwmDxt6uR9x2XgFQ82OYvKwR7
+  developer_address: uhCAkESYQW-4X6qfjxADWaRBAS3Z37-oP7AxuTT0BgKCjcs2OFgHL
 zomes:
   - name: peershare
     bundled: ../../target/wasm32-unknown-unknown/release/peershare.wasm

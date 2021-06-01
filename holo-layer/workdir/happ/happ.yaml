@@ -1,0 +1,15 @@
+---
+manifest_version: "1"
+name: peershare
+description: first try of happ in holochain in action
+slots:
+  - id: peershare-happ
+    provisioning:
+      strategy: create
+      deferred: false
+    dna:
+      bundled: "../dna/peershare.dna"
+      properties: ~
+      uid: ~
+      version: ~
+      clone_limit: 0
