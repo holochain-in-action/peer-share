@@ -20,6 +20,8 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
-    "lit": "^2.0.0-rc.2"
+    "@vaadin/router": "^1.7.4",
+    "lit": "^2.0.0-rc.2",
+    "rxjs": "^7.3.0"
   }
 }

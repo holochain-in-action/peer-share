@@ -1,12 +1,21 @@
-import { BaseComponent } from "../BaseComponent";
 import { html } from "lit";
+import { BaseComponent } from "../BaseComponent";
 import { customElement } from "lit/decorators.js";
 
 @customElement("sidebar-navi")
-export class SidebarNavi extends BaseComponent {
-    render() {
-        return html`
-        <div id="sidebar" class="active">
+class SidebarNavi extends BaseComponent {
+  constructor() {
+    super();
+  }
+  renderScript() {
+    let script = document.createElement("script");
+    script.src = "assets/js/main.js";
+    return script;
+  }
+
+  render() {
+    return html`
+      <div id="sidebar" class="active">
         <div class="sidebar-wrapper active">
           <div class="sidebar-header">
             <div class="d-flex justify-content-between">
@@ -38,39 +47,45 @@ export class SidebarNavi extends BaseComponent {
                   <span>Search</span>
                 </a>
               </li>
+              ${this.state.loggedin
+        ? html`
+                    <li class="sidebar-item">
+                      <a href="/mychannels" class="sidebar-link" data-link>
+                        <i class="bi bi-cast"></i>
+                        <span>My Channels</span>
+                      </a>
+                    </li>
+                    <li class="sidebar-item">
+                      <a href="/subs" class="sidebar-link" data-link>
+                        <i class="bi bi-view-list"></i>
+                        <span>Subscriptions</span>
+                      </a>
+                    </li>
+                    <li class="sidebar-item">
+                      <a href="/account" class="sidebar-link" data-link>
+                        <i class="bi bi-gear"></i>
+                        <span>My Account</span>
+                      </a>
+                    </li>
+                  `
+        : ""}
+              ${this.state.loggedin && this.state.isadmin
+        ? html`
+                    <li class="sidebar-item">
+                      <a href="/payoptions" class="sidebar-link" data-link>
+                        <i class="bi bi-credit-card"></i>
+                        <span>Payment Options</span>
+                      </a>
+                    </li>
 
-              <li class="sidebar-item">
-                <a href="/mychannels" class="sidebar-link" data-link>
-                  <i class="bi bi-cast"></i>
-                  <span>My Channels</span>
-                </a>
-              </li>
-              <li class="sidebar-item">
-                <a href="/subs" class="sidebar-link" data-link>
-                  <i class="bi bi-view-list"></i>
-                  <span>Subscriptions</span>
-                </a>
-              </li>
-              <li class="sidebar-item">
-                <a href="/account" class="sidebar-link" data-link>
-                  <i class="bi bi-gear"></i>
-                  <span>My Account</span>
-                </a>
-              </li>
-
-              <li class="sidebar-item">
-                <a href="/payoptions" class="sidebar-link" data-link>
-                  <i class="bi bi-credit-card"></i>
-                  <span>Payment Options</span>
-                </a>
-              </li>
-
-              <li class="sidebar-item">
-                <a href="/adminpanel" class="sidebar-link" data-link>
-                  <i class="bi bi-person-circle"></i>
-                  <span>Admin Panel</span>
-                </a>
-              </li>
+                    <li class="sidebar-item">
+                      <a href="/adminpanel" class="sidebar-link" data-link>
+                        <i class="bi bi-person-circle"></i>
+                        <span>Admin Panel</span>
+                      </a>
+                    </li>
+                  `
+        : ""}
             </ul>
           </div>
           <button class="sidebar-toggler btn x">
@@ -78,6 +93,7 @@ export class SidebarNavi extends BaseComponent {
           </button>
         </div>
       </div>
-        `;
-    }
+      ${this.renderScript()}
+    `;
+  }
 }

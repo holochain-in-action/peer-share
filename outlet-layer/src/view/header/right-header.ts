@@ -4,11 +4,25 @@ import { customElement } from "lit/decorators.js";
 
 @customElement("right-header")
 class RightHeader extends BaseComponent {
+  constructor() {
+    super();
+  }
+  connectedCallback() {
+    super.connectedCallback();
+  }
   render() {
     return html`
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-        
+          ${this.state.loggedin
+        ? html` <button
+                type="button"
+                class="btn btn-outline-danger"
+                @click="${this._signoutclick}"
+              >
+                Sign Out
+              </button>`
+        : html`
                 <button
                   type="button"
                   class="btn btn-outline-success"
@@ -17,7 +31,7 @@ class RightHeader extends BaseComponent {
                 >
                   Sign In
                 </button>
-              
+              `}
         </li>
       </ol>
 
@@ -77,7 +91,8 @@ class RightHeader extends BaseComponent {
                 </button>
                 <button
                   type="button"
-                  class="btn btn-primary ml-1"                 
+                  class="btn btn-primary ml-1"
+                  @click="${this._loginclick}"
                 >
                   <i class="bx bx-check d-block d-sm-none"></i>
                   <span class="d-none d-sm-block">login</span>
@@ -88,5 +103,25 @@ class RightHeader extends BaseComponent {
         </div>
       </div>
     `;
+  }
+
+  _loginclick(e: any) {
+    let email = (<HTMLInputElement>document.getElementById("email")).value;
+    let isAdmin = false;
+    if (email == "hedayat") isAdmin = true;
+    this.setState({
+      loggedin: true,
+      agentkey: "eg432fgES67hgs452dfg",
+      isadmin: isAdmin,
+    });
+    (<HTMLInputElement>document.getElementById("closemodal")).click();
+  }
+  _signoutclick(e: any) {
+    this.setState({
+      loggedin: false,
+      agentkey: "",
+      isadmin: false,
+    });
+    document.location.href = "/";
   }
 }
